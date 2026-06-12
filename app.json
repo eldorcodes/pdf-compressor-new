@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "PdfCompressor",
+    "slug": "PdfCompressor",
+    "version": "1.0.1",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "io.studybridge.pdfcompressor",
+       "infoPlist": {
+
+        "NSPhotoLibraryUsageDescription": "Allow access to your photo library so you can select and share PDF documents and files."
+
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "io.studybridge.pdfcompressor"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-sharing"
+    ]
+  }
+}
