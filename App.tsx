@@ -17,6 +17,7 @@ import PdfCompressor from './modules/pdfcompressor';
 export default function App() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
+  const [quality, setQuality] = useState('medium');
 
   const formatSize = (bytes: number) => {
     if (bytes < 1024) return `${bytes} B`;
@@ -39,7 +40,7 @@ export default function App() {
 
       const output = await PdfCompressor.compressPdf(
         file.uri,
-        'medium'
+        quality
       );
 
       setResult(output);
@@ -94,6 +95,60 @@ export default function App() {
             your device.
           </Text>
         </View>
+
+        <View style={styles.qualityContainer}>
+  <Text style={styles.qualityTitle}>
+    Compression Level
+  </Text>
+
+  <TouchableOpacity
+    style={[
+      styles.qualityCard,
+      quality === 'high' && styles.selectedCard,
+    ]}
+    onPress={() => setQuality('high')}
+  >
+    <Text style={styles.qualityCardTitle}>
+      Best Quality
+    </Text>
+
+    <Text style={styles.qualityCardSubtitle}>
+      Sharpest text • Lower compression
+    </Text>
+  </TouchableOpacity>
+
+  <TouchableOpacity
+    style={[
+      styles.qualityCard,
+      quality === 'medium' && styles.selectedCard,
+    ]}
+    onPress={() => setQuality('medium')}
+  >
+    <Text style={styles.qualityCardTitle}>
+      Balanced
+    </Text>
+
+    <Text style={styles.qualityCardSubtitle}>
+      Recommended • Best balance
+    </Text>
+  </TouchableOpacity>
+
+  <TouchableOpacity
+    style={[
+      styles.qualityCard,
+      quality === 'low' && styles.selectedCard,
+    ]}
+    onPress={() => setQuality('low')}
+  >
+    <Text style={styles.qualityCardTitle}>
+      Maximum Compression
+    </Text>
+
+    <Text style={styles.qualityCardSubtitle}>
+      Smallest file size
+    </Text>
+  </TouchableOpacity>
+</View>
 
         <TouchableOpacity
           style={[
@@ -315,4 +370,40 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 16,
   },
+  qualityContainer: {
+  marginBottom: 24,
+},
+
+qualityTitle: {
+  fontSize: 18,
+  fontWeight: '700',
+  color: '#111',
+  marginBottom: 12,
+},
+
+qualityCard: {
+  backgroundColor: '#FFF',
+  borderRadius: 16,
+  padding: 16,
+  marginBottom: 10,
+  borderWidth: 2,
+  borderColor: '#E5E5EA',
+},
+
+selectedCard: {
+  borderColor: '#0A84FF',
+  backgroundColor: '#F0F7FF',
+},
+
+qualityCardTitle: {
+  fontSize: 16,
+  fontWeight: '700',
+  color: '#111',
+},
+
+qualityCardSubtitle: {
+  marginTop: 4,
+  color: '#666',
+  fontSize: 14,
+},
 });
